@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogar Deals | Checkout & WhatsApp Order</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <header class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-900">DOGAR<span class="text-orange-500">DEALS</span></div>
+            <div class="text-green-600 font-bold"><i class="fab fa-whatsapp"></i> 03111504504</div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">Checkout / Delivery Details</h2>
+                
+                <form id="orderForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="custName" required class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Apna Poora Naam Likhein">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">WhatsApp / Contact Number</label>
+                        <input type="tel" id="custPhone" required class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="03XXXXXXXXX">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Complete Address</label>
+                        <textarea id="custAddress" required class="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" rows="3" placeholder="Ghar ka pata, City ka naam"></textarea>
+                    </div>
+
+                    <div class="pt-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Payment Method</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="border p-3 rounded-lg text-center cursor-pointer border-blue-500 bg-blue-50">
+                                <i class="fas fa-truck text-blue-900"></i>
+                                <p class="text-xs font-bold mt-1">Cash on Delivery</p>
+                            </div>
+                            <div class="border p-3 rounded-lg text-center opacity-60">
+                                <i class="fas fa-university text-gray-600"></i>
+                                <p class="text-xs font-bold mt-1">JazzCash/EasyPaisa</p>
+                                <span class="text-[10px] text-red-500 font-bold">Pay via WhatsApp</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="sendToWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-lg">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        <span>Confirm Order via WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="bg-blue-900 text-white p-6 rounded-2xl shadow-lg h-fit">
+                <h2 class="text-2xl font-bold mb-6 border-b border-blue-700 pb-2">Order Summary</h2>
+                <div class="flex justify-between mb-4">
+                    <span>AeroBuds Pro Max (x1)</span>
+                    <span class="font-bold">Rs. 4,500</span>
+                </div>
+                <div class="flex justify-between mb-4">
+                    <span>Delivery Charges</span>
+                    <span class="text-green-400 font-bold">FREE</span>
+                </div>
+                <div class="border-t border-blue-700 pt-4 flex justify-between text-xl font-extrabold">
+                    <span>Total Bill:</span>
+                    <span class="text-orange-400">Rs. 4,500</span>
+                </div>
+                
+                <div class="mt-8 bg-blue-800 p-4 rounded-lg text-sm text-blue-200">
+                    <p><i class="fas fa-info-circle mr-2"></i> Order confirm hote hi aapko call ya message aye ga.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function sendToWhatsApp() {
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const address = document.getElementById('custAddress').value;
+            const myNumber = "923111504504"; // Aapka number
+
+            if(name == "" || phone == "" || address == "") {
+                alert("Please fill all details!");
+                return;
+            }
+
+            const message = `*NEW ORDER - DOGAR DEALS*%0A%0A` +
+                            `*Product:* AeroBuds Pro Max%0A` +
+                            `*Price:* Rs. 4,500%0A%0A` +
+                            `*Customer Details:*%0A` +
+                            `*Name:* ${name}%0A` +
+                            `*Phone:* ${phone}%0A` +
+                            `*Address:* ${address}%0A%0A` +
+                            `*Payment:* Cash on Delivery`;
+
+            window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+        }
+    </script>
+
+</body>
+</html>
